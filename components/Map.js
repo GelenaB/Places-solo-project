@@ -3,13 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { MapView, Constants, Location, Permissions } from 'expo';
 
 export default class Map extends React.Component {
-
-  state = {
-    location: null,
-  }
-
-  markerClick () {
-    console.log('clicked');
+  constructor (props) {
+    super(props);
+    this.state = { location: null };
   }
 
   _getLocationAsync = async () => {
@@ -20,28 +16,27 @@ export default class Map extends React.Component {
       });
     }
 
+    // location gets current location
+    // sagrada contains latitute and longitude
+    // location details is your current location
+
     let location = await Location.getCurrentPositionAsync({});
-    let sagrada = (await Location.geocodeAsync('Carrer de Mallorca, 401, 08013 Barcelona'))[0];
-    let hospital = (await Location.geocodeAsync('Carrer de Sant Quintí, 89, 08041 Barcelona'))[0];
-    let tibidabo = (await Location.geocodeAsync('Cumbre del Tibidabo, 08035 Barcelona'))[0];
+    // let sagrada = (await Location.geocodeAsync('Carrer de Mallorca, 401, 08013 Barcelona'))[0];
 
-    let locationDetails = (await Location.reverseGeocodeAsync(location.coords))[0]; //if not with bracket it will be undefined
-
+    let userLocationDetails = (await Location.reverseGeocodeAsync(location.coords))[0]; //if not with bracket it will be undefined
 
     this.setState({
       location,
-      places: {
-        sagrada,
-        hospital,
-        tibidabo
-      },
-      locationDetails,
+      userLocationDetails,
     });
   };
 
-
   componentDidMount () {
     this._getLocationAsync();
+  }
+
+  markerClick (place) {
+    this.props.clickPlace(place);
   }
 
   render () {
@@ -58,10 +53,10 @@ export default class Map extends React.Component {
           latitudeDelta: 0.0922 / 2.5, //zoom
           longitudeDelta: 0.0421 / 2.5,
         }}>
-        <MapView.Marker coordinate={this.state.location.coords} title='You are here' description={this.state.locationDetails.name} onPress={() => this.markerClick()} />
-        <MapView.Marker coordinate={this.state.places.sagrada} title='Sagrada Familia' description='some text' pinColor='blue' />
-        <MapView.Marker coordinate={this.state.places.hospital} title="Hospital Sant Pau" />
-        <MapView.Marker coordinate={this.state.places.tibidabo} title="Tibidabo" />
+
+        {this.props.places.map(place => <MapView.Marker key={place.name} coordinate={place} onPress={() => this.markerClick(place)} />)}
+
+        {<MapView.Marker coordinate={this.state.location.coords} title='You are here' description={this.state.userLocationDetails.name} />}
       </MapView>
     );
   }
