@@ -2,10 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MapView, Constants, Location, Permissions } from 'expo';
 
-export default class MapScreen extends React.Component {
+export default class Map extends React.Component {
 
   state = {
     location: null,
+  }
+
+  markerClick () {
+    console.log('clicked');
   }
 
   _getLocationAsync = async () => {
@@ -41,7 +45,6 @@ export default class MapScreen extends React.Component {
   }
 
   render () {
-    console.log(this.state)
     if (!this.state.location) {
       return (<View />) // if not loaded empty screen
     }
@@ -55,7 +58,7 @@ export default class MapScreen extends React.Component {
           latitudeDelta: 0.0922 / 2.5, //zoom
           longitudeDelta: 0.0421 / 2.5,
         }}>
-        <MapView.Marker coordinate={this.state.location.coords} title='You are here' description={this.state.locationDetails.name} />
+        <MapView.Marker coordinate={this.state.location.coords} title='You are here' description={this.state.locationDetails.name} onPress={() => this.markerClick()} />
         <MapView.Marker coordinate={this.state.places.sagrada} title='Sagrada Familia' description='some text' pinColor='blue' />
         <MapView.Marker coordinate={this.state.places.hospital} title="Hospital Sant Pau" />
         <MapView.Marker coordinate={this.state.places.tibidabo} title="Tibidabo" />

@@ -1,20 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'blabla'
+      headerTitle: 'Explore'
     }
   }
 
   render () {
     const { navigate } = this.props.navigation;
     return (
-      <Button
-        title="Go to maps"
-        onPress={() => navigate('LocalMap')}
-      />
+      <View style={styles.container}>
+        <Button
+          title="Your current location"
+          onPress={() => navigate('LocalMap')}
+        />
+        <Button
+          title="Madrid"
+          onPress={() => navigate('LocalMap')}
+        />
+        <Button
+          title="Barcelona"
+          onPress={() => navigate('LocalMap')}
+        />
+      </View>
     );
   }
 }

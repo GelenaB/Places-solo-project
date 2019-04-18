@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import MapScreen from './screens/Map';
+import FullMapScreen from './screens/FullMapView';
 import HomeScreen from './screens/Home';
 
 const AppNavigator = createStackNavigator(
   {
-    LocalMap: MapScreen,
+    LocalMap: FullMapScreen, //switch navigation
     HomePageTrial: HomeScreen,
   },
   {
