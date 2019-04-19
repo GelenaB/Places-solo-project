@@ -6,6 +6,8 @@ import HomeScreen from './screens/HomeScreen';
 import PlaceScreen from './screens/PlaceScreen';
 import LocationInfoBottom from './components/LocationInfoBottom';
 import ListScreen from './screens/ListScreen';
+import NewMap from './screens/NewMap';
+
 
 const AppNavigator = createStackNavigator(
   {
@@ -14,9 +16,10 @@ const AppNavigator = createStackNavigator(
     Place: PlaceScreen,
     LocationInfoBottom: LocationInfoBottom,
     List: ListScreen,
+    NewMap: NewMap,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Map',
     // navigationOptions: {
     //   headerTintColor: "#a41034",
     //   headerStyle: {
