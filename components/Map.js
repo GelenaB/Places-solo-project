@@ -269,8 +269,8 @@ export default class Map extends React.Component {
         initialRegion={{
           latitude: this.state.location.coords.latitude,
           longitude: this.state.location.coords.longitude,
-          latitudeDelta: 0.0922 / 2.5, //zoom
-          longitudeDelta: 0.0421 / 2.5,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
         }}>
 
         {this.props.places.map(place => <MapView.Marker key={place.name} coordinate={place} onPress={() => this.markerClick(place)} />)}
