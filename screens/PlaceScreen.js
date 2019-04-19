@@ -26,7 +26,7 @@ export default class PlacePage extends React.Component {
     return (
       <View style={styles.container}>
 
-        <Image source={{ uri: this.props.place.image[0].url }}
+        {/* <Image source={{ uri: this.props.place.image[0].url }}
           style={styles.image} />
 
         <View style={styles.description}>
@@ -34,7 +34,7 @@ export default class PlacePage extends React.Component {
           <Text style={styles.text}>I'm some random text</Text>
         </View>
 
-        <Button title='more' onPress={() => this.props.navigation.navigate('Place')}> </Button>
+        <Button title='more' onPress={() => this.props.navigation.navigate('Place')}> </Button> */}
       </View>
     );
   }

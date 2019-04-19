@@ -7,6 +7,7 @@ import PlaceScreen from './screens/PlaceScreen';
 import LocationInfoBottom from './components/LocationInfoBottom';
 import ListScreen from './screens/ListScreen';
 import NewMap from './screens/NewMap';
+import MovieMap from './screens/MovieMap';
 
 
 const AppNavigator = createStackNavigator(
@@ -17,9 +18,10 @@ const AppNavigator = createStackNavigator(
     LocationInfoBottom: LocationInfoBottom,
     List: ListScreen,
     NewMap: NewMap,
+    MovieMap: MovieMap
   },
   {
-    initialRouteName: 'Map',
+    initialRouteName: 'MovieMap',
     // navigationOptions: {
     //   headerTintColor: "#a41034",
     //   headerStyle: {

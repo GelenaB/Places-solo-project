@@ -1,19 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated, Image, Dimensions } from "react-native";
+import { StyleSheet, Text, View } from 'react-native';
 import { MapView, Constants, Location, Permissions } from 'expo';
-import Places from '../PlacesDBSimulator';
-
 
 export default class Map extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { location: null }; //getting user's location
+    this.state = { location: null };
   }
-
-
-  /*
-   * getting user's location
-   */
 
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -38,44 +31,8 @@ export default class Map extends React.Component {
     });
   };
 
-  /*
-   *loading component
-   */
-
-  componentWillMount () {
-    this.index = 0;
-    this.animation = new Animated.Value(0);
-  }
-
   componentDidMount () {
     this._getLocationAsync();
-    // We should detect when scrolling has stopped then animate
-    // We should just debounce the event listener here
-    this.animation.addListener(({ value }) => {
-      let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
-      if (index >= this.state.markers.length) {
-        index = this.state.markers.length - 1;
-      }
-      if (index <= 0) {
-        index = 0;
-      }
-
-      clearTimeout(this.regionTimeout);
-      this.regionTimeout = setTimeout(() => {
-        if (this.index !== index) {
-          this.index = index;
-          const { coordinate } = this.state.markers[index];
-          this.map.animateToRegion(
-            {
-              ...coordinate,
-              latitudeDelta: this.state.region.latitudeDelta,
-              longitudeDelta: this.state.region.longitudeDelta,
-            },
-            350
-          );
-        }
-      }, 10);
-    });
   }
 
   markerClick (place) {
@@ -85,7 +42,6 @@ export default class Map extends React.Component {
 
 
   render () {
-    console.log(this.state.location)
     var mapStyle =
       [
         {
