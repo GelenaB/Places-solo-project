@@ -1,22 +1,47 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import FullMapScreen from './screens/FullMapView';
-import HomeScreen from './screens/Home';
+import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+import FullMapScreen from './screens/FullMapScreen';
+import HomeScreen from './screens/HomeScreen';
+import PlaceScreen from './screens/PlaceScreen';
+import LocationInfoBottom from './components/LocationInfoBottom';
+import ListScreen from './screens/ListScreen';
 
 const AppNavigator = createStackNavigator(
   {
-    LocalMap: FullMapScreen, //switch navigation
-    HomePageTrial: HomeScreen,
+    Map: FullMapScreen, //switch navigation
+    Home: HomeScreen,
+    Place: PlaceScreen,
+    LocationInfoBottom: LocationInfoBottom,
+    List: ListScreen,
   },
   {
-    initialRouteName: 'HomePageTrial',
+    initialRouteName: 'Home',
+    // navigationOptions: {
+    //   headerTintColor: "#a41034",
+    //   headerStyle: {
+    //     backgroundColor: "#fff"
+    //   }
+    // }
   }
+)
+
+const PlacesViewNavigator = createSwitchNavigator(
+  {
+    Map: FullMapScreen,
+    Home: HomeScreen,
+    Place: PlaceScreen,
+    LocationInfoBottom: LocationInfoBottom,
+    List: ListScreen,
+  },
+
 )
 
 const App = createAppContainer(AppNavigator);
 
-// export default class App extends React.Component {
+// do not render navigator inside a screen !!
+
+// export default class App extends React.Component { 
 
 //   render () {
 //     return (

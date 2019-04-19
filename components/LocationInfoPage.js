@@ -23,8 +23,6 @@ export default class LocationInfoBottom extends React.Component {
           <Text style={styles.text}>I'm some random text</Text>
         </View>
 
-
-
         <Button title='more' onPress={() => this.props.navigation.navigate('Place')}> </Button>
       </View>
     );

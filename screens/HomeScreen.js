@@ -2,9 +2,25 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
 export default class HomeScreen extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      cities: [
+        'Your current location',
+        'Barcelona',
+        'Madrid',
+        'Seville',
+        'Granada',
+        'Valencia',
+        'Córdoba',
+      ],
+      place: {}
+    };
+  }
+
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Explore'
+      headerTitle: 'Explore',
     }
   }
 
@@ -12,18 +28,7 @@ export default class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Button
-          title="Your current location"
-          onPress={() => navigate('LocalMap')}
-        />
-        <Button
-          title="Madrid"
-          onPress={() => navigate('LocalMap')}
-        />
-        <Button
-          title="Barcelona"
-          onPress={() => navigate('LocalMap')}
-        />
+        {this.state.cities.map(city => <Button key={city} title={city} onPress={() => navigate('List')} />)}
       </View>
     );
   }
