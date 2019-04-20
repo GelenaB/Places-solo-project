@@ -10,8 +10,8 @@ export default class LocationInfoBottom extends React.Component {
   // }
 
   render () {
+    console.log()
     // const { navigate } = this.props.navigation;
-    // console.log({ navigation })
     return (
       <View style={styles.container}>
 
@@ -23,7 +23,7 @@ export default class LocationInfoBottom extends React.Component {
           <Text style={styles.text}>I'm some random text</Text>
         </View>
 
-        <Button title='more' onPress={() => this.props.navigation.navigate('Place')}> </Button>
+        <Button title='more' onPress={() => this.props.navigate.navigate('Place')}> </Button>
       </View>
     );
   }

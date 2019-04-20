@@ -40,6 +40,7 @@ export default class screens extends React.Component {
     this.animation = new Animated.Value(0);
   }
   componentDidMount () {
+    this.test();
     this._getLocationAsync(); // ??
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here

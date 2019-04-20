@@ -18,10 +18,11 @@ export default class ListScreen extends React.Component {
   // goes to place instead of map
 
   render () {
-    console.log(Places)
+    console.log(this.props.navigation)
+
     return (
       <View style={styles.container}>
-        {Places.map(place => <LocationInfoPage key={place.name} place={place} />)}
+        {Places.map(place => <LocationInfoPage navigate={this.props.navigation} key={place.name} place={place} />)}
       </View>
     );
   }

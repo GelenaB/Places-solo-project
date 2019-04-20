@@ -21,7 +21,7 @@ const AppNavigator = createStackNavigator(
     MovieMap: MovieMap
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'List',
     // navigationOptions: {
     //   headerTintColor: "#a41034",
     //   headerStyle: {

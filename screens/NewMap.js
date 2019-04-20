@@ -1,21 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated, Image, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Animated, Image, Dimensions, Button } from "react-native";
 import { MapView, Constants, Location, Permissions } from 'expo';
 import Places from '../PlacesDBSimulator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import geolib from 'geolib';
 
 const { width, height } = Dimensions.get("window");
 
 const CARD_HEIGHT = height / 6;
-const CARD_WIDTH = 200;
+const CARD_WIDTH = 250;
 
 export default class screens extends React.Component {
-  state = {
 
-    region:
-      null
-
-  };
+  // test = geolib.getDistance(
+  //   { latitude: this.state.region.coords.latitude, longitude: this.state.region.coords.longitude },
+  //   { latitude: "51° 31' N", longitude: "7° 28' E" }
+  // );
+  onPressed = (place) => {
+    this.props.navigation.navigate(
+      'Place',
+      { place: place }
+    );
+  }
+  state = { region: null };
 
   static navigationOptions = ({ navigation }) => ({
     headerRight:
@@ -79,6 +86,8 @@ export default class screens extends React.Component {
   }
 
   render () {
+
+
     var mapStyle =
       [
         {
@@ -381,11 +390,11 @@ export default class screens extends React.Component {
                 resizeMode="cover"
               />
               <View style={styles.textContent}>
-                <Text numberOfLines={1} style={styles.cardtitle}>{place.name}</Text>
-                <Text numberOfLines={1} style={styles.cardDescription}>
-                  {place.description}
-                </Text>
+                <Text style={styles.cardtitle}>{place.name}</Text>
+
               </View>
+              <Button title='more' onPress={() => { this.onPressed(place) }}>
+              </Button>
             </View>
           ))}
         </Animated.ScrollView>
