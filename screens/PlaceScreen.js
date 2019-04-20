@@ -9,6 +9,8 @@ export default class PlacePage extends React.Component {
     }
   }
 
+  // pass location from user
+
   _handlePressDirections = () => {
     let address = 'Carrer de Mallorca, 401';
     let postalCode = '08013';
@@ -41,7 +43,7 @@ export default class PlacePage extends React.Component {
           /><Text>photo by {image.author}</Text></View>)}
         </ScrollView>
 
-        <Text>Antoni Gaudí's renowned unfinished church, started in the 1880s, with museum and city views.</Text>
+        <Text>{this.place.description}</Text>
         <Button title='press' onPress={() => this._handlePressDirections()} />
       </View>
     )

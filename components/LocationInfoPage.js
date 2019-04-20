@@ -3,11 +3,6 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 
 
 export default class LocationInfoBottom extends React.Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   return {
-  //     headerTitle: 'Map'
-  //   }
-  // }
 
   onPressed = (place) => {
 
@@ -18,7 +13,6 @@ export default class LocationInfoBottom extends React.Component {
   }
 
   render () {
-    // const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
 

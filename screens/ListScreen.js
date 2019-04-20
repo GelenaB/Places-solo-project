@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Places from '../PlacesDBSimulator';
 import LocationInfoPage from '../components/LocationInfoPage';
@@ -20,9 +20,9 @@ export default class ListScreen extends React.Component {
   render () {
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {Places.map(place => <LocationInfoPage navigate={this.props.navigation} key={place.name} place={place} />)}
-      </View>
+      </ScrollView>
     );
   }
 }
