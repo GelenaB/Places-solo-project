@@ -27,7 +27,8 @@ export default class screens extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerRight:
-      <Ionicons style={{ padding: 10 }} name='ios-list' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
+      <Ionicons style={{ paddingRight: 25 }} name='ios-list-box' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>,
+    title: 'Barcelona',
   });
   //function is getting an object of 'things', which we're destructuring to get the navigation
 
@@ -447,12 +448,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontWeight: "bold",
     alignSelf: 'center',
+    color: '#383838',
   },
-  // cardDescription: {
-  //   fontSize: 12,
-  //   color: "#444",
-  //   backgroundColor: 'yellow',
-  // },
   markerWrap: {
     alignItems: "center",
     justifyContent: "center",

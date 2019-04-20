@@ -15,41 +15,17 @@ const AppNavigator = createStackNavigator(
     NewMap: NewMap,
   },
   {
-    initialRouteName: 'List',
-    // navigationOptions: {
-    //   headerTintColor: "#a41034",
-    //   headerStyle: {
-    //     backgroundColor: "#fff"
-    //   }
-    // }
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerTintColor: 'rgba(130,4,150, 0.9)',
+      headerStyle: {
+        backgroundColor: "#fff"
+      }
+    }
   }
 )
 
-// const PlacesViewNavigator = createSwitchNavigator(
-//   {
-
-//     Home: HomeScreen,
-//     Place: PlaceScreen,
-//     List: ListScreen,
-//   },
-
-// )
-
 const App = createAppContainer(AppNavigator);
-
-// do not render navigator inside a screen !!
-
-// export default class App extends React.Component { 
-
-//   render () {
-//     return (
-//       // <AppNavigator />
-//       <View style={styles.container}>
-//         <Text>This is the test screen</Text>
-//       </View>
-//     )
-//   }
-// };
 
 export default App;
 

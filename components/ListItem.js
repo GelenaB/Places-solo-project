@@ -20,7 +20,7 @@ export default class LocationInfoBottom extends React.Component {
 
         <TouchableOpacity onPress={() => { this.onPressed(this.props.place) }} style={styles.description}>
           <Text style={[styles.text, styles.title]}>{this.props.place.name}</Text>
-          <Text style={styles.text}>Carrer 202, 101029, Barcelona</Text>
+          <Text style={styles.text}>{this.props.place.address}</Text>
         </TouchableOpacity>
       </View>
     );

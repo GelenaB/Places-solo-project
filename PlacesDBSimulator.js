@@ -2,6 +2,7 @@ export default [
   {
     'name': 'Sagrada Familia',
     'description': 'Antoni Gaudí\'s renowned unfinished church, started in the 1880s, with museum and city views.',
+    'address': 'Carrer de Mallorca, 401, 08013',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.4036339,
@@ -23,6 +24,7 @@ export default [
   {
     'name': 'Tibidabo',
     'description': 'Scenic views of Barcelona are provided from this mountaintop with a grand cathedral & ferris wheel.',
+    'address': 'Cumbre del Tibidabo, 08035',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.4225152,
@@ -42,8 +44,9 @@ export default [
     ]
   },
   {
-    'name': 'Hospital de la Santa Creu i Sant Pau',
+    'name': 'Hospital de Sant Pau',
     'description': 'Modernista hospital offering guided tours of gardens dotted with colorful Moorish-style pavilions.',
+    'address': 'Carrer de Sant Quintí, 89, 08041',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.4136997,
@@ -69,6 +72,7 @@ export default [
   {
     'name': 'Palau Güell',
     'description': 'Ornate modernist mansion that is a historically significant example of early Gaudí architecture.',
+    'address': 'Carrer Nou de la Rambla, 3-5, 08001',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.3788851,
@@ -95,6 +99,7 @@ export default [
   {
     'name': 'Casa Milà',
     'description': 'Gaudi\'s Catalan art nouveau period building with quarrylike facade, hosting exhibitions & concerts.',
+    'address': 'Provença, 261-265, 08008',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.3953845,
@@ -110,6 +115,7 @@ export default [
   {
     'name': 'Casa Batlló',
     'description': 'Fantastical, curving dragon-roofed apartment block, now a museum, created by architect Antoni Gaudi.',
+    'address': 'Passeig de Gràcia, 43, 08007',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.3916088,
@@ -128,6 +134,7 @@ export default [
   {
     'name': 'Park Güell',
     'description': 'Mosaic-covered buildings, steps & sculptures in verdant park with Gaudi museum & panoramic views.',
+    'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.4144988,
@@ -142,6 +149,7 @@ export default [
   {
     'name': 'Palau de la Música Catalana',
     'description': 'Art nouveau concert hall known for its ornate facade & opulent auditorium with stained-glass dome.',
+    'address': 'C/ Palau de la Música, 4-6, 08003',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.3875752,
@@ -156,6 +164,7 @@ export default [
   {
     'name': 'Casa Vicens Gaudí',
     'description': 'Grand 4-floor house, designed by Antoni Gaudi, with Moorish influences & a protruding corner tower.',
+    'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.4035018,
@@ -170,7 +179,9 @@ export default [
 
   {
     'name': 'Arco de Triunfo de Barcelona',
+    'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
     'description': 'Classical archway built as the main entrance to the Universal Exhibition hosted by the city in 1888.',
+    'address': 'Passeig de Gràcia, 43, 08007',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.3910564,
@@ -184,7 +195,9 @@ export default [
 
   {
     'name': 'Cathedral of Barcelona',
+    'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
     'description': 'Imposing Gothic cathedral with geese-filled cloisters, offering guided tours & city-wide views.',
+    'address': 'Carrer Nou de la Rambla, 3-5, 08001',
     "accuracy": 100,
     "altitude": 0,
     "latitude": 41.383962,

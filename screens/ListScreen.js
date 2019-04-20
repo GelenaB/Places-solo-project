@@ -12,10 +12,8 @@ export default class ListScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerRight:
-      <Ionicons style={{ padding: 10 }} name='ios-pin' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('NewMap') }}></Ionicons>
+      <Ionicons style={{ paddingRight: 25 }} name='ios-pin' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('NewMap') }}></Ionicons>
   });
-
-  // goes to place instead of map
 
   render () {
 

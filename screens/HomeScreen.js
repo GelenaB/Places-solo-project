@@ -7,12 +7,6 @@ export default class HomeScreen extends React.Component {
     this.state = {
       cities: [
         'Your current location',
-        'Barcelona',
-        'Madrid',
-        'Seville',
-        'Granada',
-        'Valencia',
-        'Córdoba',
       ],
       place: {}
     };
@@ -21,6 +15,7 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: 'Explore',
+      color: 'purple',
     }
   }
 
