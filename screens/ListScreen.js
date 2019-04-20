@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Button, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Places from '../PlacesDBSimulator';
-import LocationInfoPage from '../components/LocationInfoPage';
+import LocationInfoPage from '../components/BottomInfo';
 
 export default class ListScreen extends React.Component {
 

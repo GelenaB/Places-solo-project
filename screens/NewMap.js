@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated, Image, Dimensions, Button } from "react-native";
+import { StyleSheet, Text, View, Animated, Image, Dimensions, Button, TouchableOpacity } from "react-native";
 import { MapView, Constants, Location, Permissions } from 'expo';
 import Places from '../PlacesDBSimulator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -17,7 +17,7 @@ export default class screens extends React.Component {
   //   { latitude: "51° 31' N", longitude: "7° 28' E" }
   // );
   onPressed = (place) => {
-    console.log(place)
+
     this.props.navigation.navigate(
       'Place',
       { place: place }
@@ -384,7 +384,7 @@ export default class screens extends React.Component {
           contentContainerStyle={styles.endPadding}
         >
           {Places.map((place, index) => (
-            <View style={styles.card} key={index}>
+            <TouchableOpacity onPress={() => { this.onPressed(place) }} style={styles.card} key={index}>
               <Image
                 source={place.image}
                 style={styles.cardImage}
@@ -394,9 +394,9 @@ export default class screens extends React.Component {
                 <Text style={styles.cardtitle}>{place.name}</Text>
 
               </View>
-              <Button title='more' onPress={() => { this.onPressed(place) }} />
 
-            </View>
+
+            </TouchableOpacity>
           ))}
         </Animated.ScrollView>
       </View>

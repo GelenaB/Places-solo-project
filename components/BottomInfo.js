@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
 
 
 export default class LocationInfoBottom extends React.Component {
@@ -19,12 +19,9 @@ export default class LocationInfoBottom extends React.Component {
         <Image source={{ uri: this.props.place.image[0].url }}
           style={styles.image} />
 
-        <View style={styles.description}>
+        <TouchableOpacity onPress={() => { this.onPressed(this.props.place) }} style={styles.description}>
           <Text style={[styles.text, styles.title]}>{this.props.place.name}</Text>
-          <Text style={styles.text}>I'm some random text</Text>
-        </View>
-
-        <Button title='more' onPress={() => { this.onPressed(this.props.place) }} />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'flex-start',
-    height: 'auto',
+    height: 100,
     width: 100,
   },
   description: {

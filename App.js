@@ -1,20 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
-import FullMapScreen from './screens/FullMapScreen';
 import HomeScreen from './screens/HomeScreen';
 import PlaceScreen from './screens/PlaceScreen';
-import LocationInfoBottom from './components/LocationInfoBottom';
 import ListScreen from './screens/ListScreen';
 import NewMap from './screens/NewMap';
 
 
 const AppNavigator = createStackNavigator(
   {
-    Map: FullMapScreen, //switch navigation
     Home: HomeScreen,
     Place: PlaceScreen,
-    LocationInfoBottom: LocationInfoBottom,
     List: ListScreen,
     NewMap: NewMap,
   },
@@ -29,16 +25,15 @@ const AppNavigator = createStackNavigator(
   }
 )
 
-const PlacesViewNavigator = createSwitchNavigator(
-  {
-    Map: FullMapScreen,
-    Home: HomeScreen,
-    Place: PlaceScreen,
-    LocationInfoBottom: LocationInfoBottom,
-    List: ListScreen,
-  },
+// const PlacesViewNavigator = createSwitchNavigator(
+//   {
 
-)
+//     Home: HomeScreen,
+//     Place: PlaceScreen,
+//     List: ListScreen,
+//   },
+
+// )
 
 const App = createAppContainer(AppNavigator);
 
