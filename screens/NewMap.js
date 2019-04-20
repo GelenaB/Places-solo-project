@@ -17,6 +17,7 @@ export default class screens extends React.Component {
   //   { latitude: "51° 31' N", longitude: "7° 28' E" }
   // );
   onPressed = (place) => {
+    console.log(place)
     this.props.navigation.navigate(
       'Place',
       { place: place }
@@ -393,8 +394,8 @@ export default class screens extends React.Component {
                 <Text style={styles.cardtitle}>{place.name}</Text>
 
               </View>
-              <Button title='more' onPress={() => { this.onPressed(place) }}>
-              </Button>
+              <Button title='more' onPress={() => { this.onPressed(place) }} />
+
             </View>
           ))}
         </Animated.ScrollView>

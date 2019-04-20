@@ -18,7 +18,6 @@ export default class ListScreen extends React.Component {
   // goes to place instead of map
 
   render () {
-    console.log(this.props.navigation)
 
     return (
       <View style={styles.container}>
