@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
 
-
 export default class LocationInfoBottom extends React.Component {
 
   onPressed = (place) => {
@@ -21,6 +20,7 @@ export default class LocationInfoBottom extends React.Component {
 
         <TouchableOpacity onPress={() => { this.onPressed(this.props.place) }} style={styles.description}>
           <Text style={[styles.text, styles.title]}>{this.props.place.name}</Text>
+          <Text style={styles.text}>Carrer 202, 101029, Barcelona</Text>
         </TouchableOpacity>
       </View>
     );
@@ -40,15 +40,14 @@ const styles = StyleSheet.create({
     width: 100,
   },
   description: {
-    flex: 3,
-    paddingLeft: 10,
+    flex: 2.7,
+    padding: 10,
   },
   text: {
-    flexDirection: 'column',
+    fontSize: 12,
   },
   title: {
-    color: 'black',
+    fontSize: 16,
     fontWeight: 'bold',
-
   }
 })

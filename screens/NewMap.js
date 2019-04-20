@@ -7,8 +7,8 @@ import geolib from 'geolib';
 
 const { width, height } = Dimensions.get("window");
 
-const CARD_HEIGHT = height / 6;
-const CARD_WIDTH = 250;
+const CARD_HEIGHT = height / 5;
+const CARD_WIDTH = 270;
 
 export default class screens extends React.Component {
 
@@ -27,7 +27,7 @@ export default class screens extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerRight:
-      <Ionicons style={{ padding: 10 }} name='ios-list' size={30} color='#000' onPress={() => { navigation.navigate('List') }}></Ionicons>
+      <Ionicons style={{ padding: 10 }} name='ios-list' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
   });
   //function is getting an object of 'things', which we're destructuring to get the navigation
 
@@ -419,7 +419,9 @@ const styles = StyleSheet.create({
     paddingRight: width - CARD_WIDTH,
   },
   card: {
-    padding: 10,
+    paddingTop: 6,
+    paddingLeft: 6,
+    paddingRight: 6,
     elevation: 2,
     backgroundColor: "#FFF",
     marginHorizontal: 10,
@@ -438,17 +440,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   textContent: {
-    flex: 1,
+    flex: 0.8,
   },
   cardtitle: {
     fontSize: 12,
     marginTop: 5,
     fontWeight: "bold",
+    alignSelf: 'center',
   },
-  cardDescription: {
-    fontSize: 12,
-    color: "#444",
-  },
+  // cardDescription: {
+  //   fontSize: 12,
+  //   color: "#444",
+  //   backgroundColor: 'yellow',
+  // },
   markerWrap: {
     alignItems: "center",
     justifyContent: "center",
