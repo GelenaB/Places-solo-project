@@ -23,7 +23,7 @@ export default class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        {this.state.cities.map(city => <Button key={city} title={city} onPress={() => navigate('NewMap')} />)}
+        {this.state.cities.map(city => <Button key={city} title={city} onPress={() => navigate('Map')} />)}
       </View>
     );
   }

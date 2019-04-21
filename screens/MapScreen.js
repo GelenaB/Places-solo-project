@@ -4,6 +4,9 @@ import { MapView, Constants, Location, Permissions } from 'expo';
 import Places from '../PlacesDBSimulator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import geolib from 'geolib';
+import MapStyle from '../mapStyle/MapStyle';
+
+const userMarker = require('../assets/markers/maps-and-flags.png')
 
 const { width, height } = Dimensions.get("window");
 
@@ -16,8 +19,14 @@ export default class screens extends React.Component {
   //   { latitude: this.state.region.coords.latitude, longitude: this.state.region.coords.longitude },
   //   { latitude: "51° 31' N", longitude: "7° 28' E" }
   // );
-  onPressed = (place) => {
 
+  marker = <Ionicons style={{ paddingRight: 25 }} name='ios-list-box' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
+
+  handleMarkerPress = (e) => {
+    this.scroll.getNode().scrollTo({ x: e * 270, y: 0, animated: true });
+  }
+
+  onPressed = (place) => {
     this.props.navigation.navigate(
       'Place',
       { place: place }
@@ -89,222 +98,6 @@ export default class screens extends React.Component {
 
   render () {
 
-
-    var mapStyle =
-      [
-        {
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.icon",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.land_parcel",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#bdbdbd"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.attraction",
-          "elementType": "geometry.fill",
-          "stylers": [
-            {
-              "color": "#ff2f92"
-            },
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.attraction",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "visibility": "on"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry.fill",
-          "stylers": [
-            {
-              "color": "#7fec00"
-            },
-            {
-              "saturation": -40
-            },
-            {
-              "lightness": -10
-            },
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#ffffff"
-            }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#dadada"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.line",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.station",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#c9c9c9"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry.fill",
-          "stylers": [
-            {
-              "color": "#5fceff"
-            },
-            {
-              "lightness": 40
-            },
-            {
-              "visibility": "on"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        }
-      ]
     if (!this.state.region) {
       return (<View />) // if not loaded empty screen
     }
@@ -332,7 +125,7 @@ export default class screens extends React.Component {
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           ref={map => this.map = map}
-          customMapStyle={mapStyle}
+          customMapStyle={MapStyle}
           initialRegion={{
             latitude: this.state.region.coords.latitude,
             longitude: this.state.region.coords.longitude,
@@ -353,38 +146,33 @@ export default class screens extends React.Component {
               opacity: interpolations[index].opacity,
             };
             return (
-              <MapView.Marker onPress={() => { console.log(place) }} key={index} coordinate={place}>
+              <MapView.Marker
+                key={index}
+                coordinate={place}
+                onPress={() => this.handleMarkerPress(index)} >
                 <Animated.View style={[styles.markerWrap, opacityStyle]}>
                   <Animated.View style={[styles.ring, scaleStyle]} />
                   <View style={styles.place} />
                 </Animated.View>
               </MapView.Marker>
             );
+            // in order to render custom markers on the screen, need to render them as children of MapView.Marker
           })}
 
-          <MapView.Marker coordinate={this.state.region.coords} title='You are here' />
+          <MapView.Marker coordinate={this.state.region.coords}
+            image={userMarker} />
 
         </MapView>
 
         <Animated.ScrollView
           horizontal
+          ref={(c) => { this.scroll = c }}
           scrollEventThrottle={1}
-          showsHorizontalScrollIndicator={false}
-          snapToInterval={CARD_WIDTH}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: this.animation,
-                  },
-                },
-              },
-            ],
-            { useNativeDriver: true }
-          )}
+          showsHorizontalScrollIndicator={true}
+          snapToInterval={CARD_WIDTH} //ios only property
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: this.animation, }, }, },], { useNativeDriver: true })}
           style={styles.scrollView}
-          contentContainerStyle={styles.endPadding}
+          contentContainerStyle={styles.endPadding} // to allow to scroll pass the last item
         >
           {Places.map((place, index) => (
             <TouchableOpacity onPress={() => { this.onPressed(place) }} style={styles.card} key={index}>
@@ -397,7 +185,6 @@ export default class screens extends React.Component {
                 <Text style={styles.cardtitle}>{place.name}</Text>
 
               </View>
-
 
             </TouchableOpacity>
           ))}
@@ -452,23 +239,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#383838',
   },
-  markerWrap: {
+  placeWrap: {
     alignItems: "center",
     justifyContent: "center",
   },
   place: {
-    width: 20,
-    height: 20,
-    borderRadius: 4,
+    width: 16,
+    height: 16,
+    borderRadius: 10,
     backgroundColor: "rgba(130,4,150, 0.9)",
   },
-  ring: {
-    width: 240,
-    height: 240,
-    borderRadius: 120,
-    backgroundColor: "rgba(130,4,150, 0.3)",
-    position: "absolute",
-    borderWidth: 1,
-    borderColor: "rgba(130,4,150, 0.5)",
-  },
+  // ring: {
+  //   width: 24,
+  //   height: 24,
+  //   borderRadius: 12,
+  //   backgroundColor: "rgba(130,4,150, 0.3)",
+  //   position: "absolute",
+  //   borderWidth: 1,
+  //   borderColor: "rgba(130,4,150, 0.5)",
+  // },
 });
