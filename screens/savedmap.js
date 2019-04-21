@@ -16,10 +16,6 @@ export default class screens extends React.Component {
   //   { latitude: this.state.region.coords.latitude, longitude: this.state.region.coords.longitude },
   //   { latitude: "51° 31' N", longitude: "7° 28' E" }
   // );
-
-  handleMarkerPress = (e) => {
-    this.scroll.getNode().scrollTo({ x: e * 270, y: 0, animated: true });
-  }
   onPressed = (place) => {
 
     this.props.navigation.navigate(
@@ -357,10 +353,7 @@ export default class screens extends React.Component {
               opacity: interpolations[index].opacity,
             };
             return (
-              <MapView.Marker
-                key={index}
-                coordinate={place}
-                onPress={() => this.handleMarkerPress(index)} >
+              <MapView.Marker onPress={() => { console.log(place) }} key={index} coordinate={place}>
                 <Animated.View style={[styles.markerWrap, opacityStyle]}>
                   <Animated.View style={[styles.ring, scaleStyle]} />
                   <View style={styles.place} />
@@ -375,13 +368,24 @@ export default class screens extends React.Component {
 
         <Animated.ScrollView
           horizontal
-          ref={(c) => { this.scroll = c }}
           scrollEventThrottle={1}
-          showsHorizontalScrollIndicator={true}
+          showsHorizontalScrollIndicator={false}
           snapToInterval={CARD_WIDTH}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: this.animation, }, }, },], { useNativeDriver: true })}
+          onScroll={Animated.event(
+            [
+              {
+                nativeEvent: {
+                  contentOffset: {
+                    x: this.animation,
+                  },
+                },
+              },
+            ],
+            { useNativeDriver: true }
+          )}
           style={styles.scrollView}
-          contentContainerStyle={styles.endPadding} >
+          contentContainerStyle={styles.endPadding}
+        >
           {Places.map((place, index) => (
             <TouchableOpacity onPress={() => { this.onPressed(place) }} style={styles.card} key={index}>
               <Image
