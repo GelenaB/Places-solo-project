@@ -11,6 +11,7 @@ const cardHeight = height / 5;
 const cardWidth = 270;
 
 export default class screens extends React.Component {
+
   state = { region: null };
 
   marker = <Ionicons style={{ paddingRight: 25 }} name='ios-list-box' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
@@ -94,6 +95,7 @@ export default class screens extends React.Component {
     if (!this.state.region) {
       return (<View />) // if not loaded empty screen
     }
+
     const interpolations = Places.map((place, index) => {
       const inputRange = [
         (index - 1) * cardWidth,

@@ -4,6 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import PlaceScreen from './screens/PlaceScreen';
 import ListScreen from './screens/ListScreen';
 import MapScreen from './screens/MapScreen';
+import firebaseTest from './firebase/FirebaseConfig';
 
 const AppNavigator = createStackNavigator(
   {
@@ -11,9 +12,10 @@ const AppNavigator = createStackNavigator(
     Place: PlaceScreen,
     List: ListScreen,
     Map: MapScreen,
+    Fire: firebaseTest,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'List',
     defaultNavigationOptions: {
       headerTintColor: 'rgba(130,4,150, 0.9)',
       headerStyle: {
