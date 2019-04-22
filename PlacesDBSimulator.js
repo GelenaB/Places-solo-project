@@ -1,12 +1,14 @@
 export default [
   {
+    'id': '1',
     'name': 'Sagrada Familia',
     'description': 'Antoni Gaudí\'s renowned unfinished church, started in the 1880s, with museum and city views.',
     'address': 'Carrer de Mallorca, 401, 08013',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.4036339,
-    "longitude": 2.1721618,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.4036339,
+    'longitude': 2.1721618,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/1f3c70f9494d8aa6987044131fec207f/5D381ABE/t51.2885-15/e35/56573623_2210990905603177_2531192974331423388_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'rzyhaano',
@@ -22,13 +24,15 @@ export default [
     ]
   },
   {
+    'id': '2',
     'name': 'Tibidabo',
     'description': 'Scenic views of Barcelona are provided from this mountaintop with a grand cathedral & ferris wheel.',
     'address': 'Cumbre del Tibidabo, 08035',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.4225152,
-    "longitude": 2.1098348,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.4225152,
+    'longitude': 2.1098348,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/5616c55c8fcd80faf6b5c58473862767/5D3CD641/t51.2885-15/e35/55886220_973483216194531_328930802208256239_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'baironstc',
@@ -44,13 +48,15 @@ export default [
     ]
   },
   {
+    'id': '3',
     'name': 'Hospital de Sant Pau',
     'description': 'Modernista hospital offering guided tours of gardens dotted with colorful Moorish-style pavilions.',
     'address': 'Carrer de Sant Quintí, 89, 08041',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.4136997,
-    "longitude": 2.174314,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.4136997,
+    'longitude': 2.174314,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/b415591743da2c55825ed368a30a5e66/5D439926/t51.2885-15/e35/57240751_103184607501903_4273588193922221067_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'gb_codes'
@@ -70,13 +76,15 @@ export default [
     ]
   },
   {
+    'id': '4',
     'name': 'Palau Güell',
     'description': 'Ornate modernist mansion that is a historically significant example of early Gaudí architecture.',
     'address': 'Carrer Nou de la Rambla, 3-5, 08001',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.3788851,
-    "longitude": 2.1742398,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.3788851,
+    'longitude': 2.1742398,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/6da11f778963915d6b60cd52acc0a3ca/5D47EBBB/t51.2885-15/e35/56890521_340068746857119_1752103564166482488_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'gb_codes'
@@ -97,13 +105,15 @@ export default [
   },
 
   {
+    'id': '5',
     'name': 'Casa Milà',
     'description': 'Gaudi\'s Catalan art nouveau period building with quarrylike facade, hosting exhibitions & concerts.',
     'address': 'Provença, 261-265, 08008',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.3953845,
-    "longitude": 2.1597674,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.3953845,
+    'longitude': 2.1597674,
     'image': [
       {
         'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/72d6f870fc7721ba0cbfdb1321ddd3d8/5D34BD06/t51.2885-15/e35/57311744_422185325265669_1218804977632101088_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
@@ -113,13 +123,15 @@ export default [
   },
 
   {
+    'id': '6',
     'name': 'Casa Batlló',
     'description': 'Fantastical, curving dragon-roofed apartment block, now a museum, created by architect Antoni Gaudi.',
     'address': 'Passeig de Gràcia, 43, 08007',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.3916088,
-    "longitude": 2.1625483,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.3916088,
+    'longitude': 2.1625483,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/cba226f5ed333c208323bdc953c16b4a/5D35C07A/t51.2885-15/e35/44236605_1842545615862803_214625121132397141_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'iharvera'
@@ -132,13 +144,15 @@ export default [
   },
 
   {
+    'id': '7',
     'name': 'Park Güell',
     'description': 'Mosaic-covered buildings, steps & sculptures in verdant park with Gaudi museum & panoramic views.',
     'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.4144988,
-    "longitude": 2.1505005,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.4144988,
+    'longitude': 2.1505005,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/e141ca857cd3609285ea4a65fac1fe1f/5D7108D8/t51.2885-15/e35/56385059_696149490814431_3000373716871498389_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'gb_codes'
@@ -147,13 +161,15 @@ export default [
   },
 
   {
+    'id': '8',
     'name': 'Palau de la Música Catalana',
     'description': 'Art nouveau concert hall known for its ornate facade & opulent auditorium with stained-glass dome.',
     'address': 'C/ Palau de la Música, 4-6, 08003',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.3875752,
-    "longitude": 2.1753128,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.3875752,
+    'longitude': 2.1753128,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/d3a0994e3bbd122bfff4406f76f0c2b7/5D53E5CC/t51.2885-15/e35/57730378_168466390825767_5444803694470821688_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'gb_codes'
@@ -162,13 +178,15 @@ export default [
   },
 
   {
+    'id': '9',
     'name': 'Casa Vicens Gaudí',
     'description': 'Grand 4-floor house, designed by Antoni Gaudi, with Moorish influences & a protruding corner tower.',
     'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.4035018,
-    "longitude": 2.1484515,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.4035018,
+    'longitude': 2.1484515,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/eb2d7e09f77bca8cd52b881c3017d269/5D47716C/t51.2885-15/e35/56923047_379125696146834_1491694715779392655_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'gb_codes'
@@ -178,14 +196,16 @@ export default [
 
 
   {
+    'id': '10',
     'name': 'Arco de Triunfo de Barcelona',
     'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
     'description': 'Classical archway built as the main entrance to the Universal Exhibition hosted by the city in 1888.',
     'address': 'Passeig de Gràcia, 43, 08007',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.3910564,
-    "longitude": 2.1784509,
+    'city': 'Barcelona',
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.3910564,
+    'longitude': 2.1784509,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/5e56720ec42428dc8365e11ed2001c62/5D468C08/t51.2885-15/e35/56390543_159042485106705_6966051248738037139_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'jeffmcquay'
@@ -194,14 +214,16 @@ export default [
   },
 
   {
+    'id': '11',
     'name': 'Cathedral of Barcelona',
     'address': 'Carrer de Mallorca, 401, 08013 Barcelona',
+    'city': 'Barcelona',
     'description': 'Imposing Gothic cathedral with geese-filled cloisters, offering guided tours & city-wide views.',
     'address': 'Carrer Nou de la Rambla, 3-5, 08001',
-    "accuracy": 100,
-    "altitude": 0,
-    "latitude": 41.383962,
-    "longitude": 2.1761991,
+    'accuracy': 100,
+    'altitude': 0,
+    'latitude': 41.383962,
+    'longitude': 2.1761991,
     'image': [{
       'url': 'https://instagram.fbcn1-1.fna.fbcdn.net/vp/c87f90e40620f9269cc0b1a371702cc7/5D543EEA/t51.2885-15/e35/56284082_136571120804118_4058781214894113392_n.jpg?_nc_ht=instagram.fbcn1-1.fna.fbcdn.net',
       'author': 'gb_codes'

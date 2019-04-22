@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default class LocationInfoBottom extends React.Component {
 
@@ -22,6 +22,7 @@ export default class LocationInfoBottom extends React.Component {
           <Text style={[styles.text, styles.title]}>{this.props.place.name}</Text>
           <Text style={styles.text}>{this.props.place.address}</Text>
         </TouchableOpacity>
+
       </View>
     );
   }

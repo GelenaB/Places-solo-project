@@ -6,17 +6,12 @@ import LocationInfoPage from '../components/ListItem';
 
 export default class ListScreen extends React.Component {
 
-  setDetails = (place) => {
-    this.setState({ place });
-  }
-
   static navigationOptions = ({ navigation }) => ({
     headerRight:
       <Ionicons style={{ paddingRight: 25 }} name='ios-pin' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('Map') }}></Ionicons>
   });
 
   render () {
-
     return (
       <ScrollView style={styles.container}>
         {Places.map(place => <LocationInfoPage navigate={this.props.navigation} key={place.name} place={place} />)}
