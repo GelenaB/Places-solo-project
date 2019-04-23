@@ -34,11 +34,33 @@ export class AppProvider extends React.Component {
     });
   };
 
+  distanceCalculator = (lat1, lon1, lat2, lon2) => {
+    const R = 6371; // km (change this constant to get miles)
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c;
+    if (d > 1) return Math.round(d);
+    else if (d <= 1) return Math.round(d * 1000);
+    return d;
+  }
+
   componentDidMount () {
     firebaseDatabase.ref().on('value', (snapshot) => {
-      this.setState({ places: snapshot.val() })
-    })
+      const data = (snapshot.val());
+      data.map(place => {
+        let distance = this.distanceCalculator(this.state.region.coords.latitude, this.state.region.coords.longitude, place.latitude, place.longitude);
+        place.distanceAway = distance;
+      });
+      this.setState({ places: data });
+      console.log(this.state.places)
+    });
+
     this._getLocationAsync();
+
   }
 
   render () {

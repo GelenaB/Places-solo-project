@@ -16,7 +16,7 @@ export default class screens extends React.Component {
   marker = <Ionicons style={{ paddingRight: 25 }} name='ios-list-box' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
 
   handleMarkerPress = (e) => {
-    this.scroll.getNode().scrollTo({ x: e * 270, y: 0, animated: true });
+    this.scroll.getNode().scrollTo({ x: e * cardWidth, y: 0, animated: true });
   }
 
   handlePlacePress = (place) => {
