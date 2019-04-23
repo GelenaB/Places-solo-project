@@ -106,7 +106,7 @@ export default class screens extends React.Component {
               }}
               style={styles.container}>
 
-              {Places.map((place, index) => {
+              {value.places.map((place, index) => {
                 const scaleStyle = {
                   transform: [
                     {

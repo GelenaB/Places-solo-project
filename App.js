@@ -1,5 +1,4 @@
 import React from 'react';
-import { firebaseDatabase } from './firebase/FirebaseConfig';
 import { firebaseConfig } from './firebase/FirebaseConfig';
 import AppNavigator from './navigator/AppNavigator.js';
 import * as firebase from 'firebase';

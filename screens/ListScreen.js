@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Places from '../PlacesDBSimulator';
-import LocationInfoPage from '../components/ListItem';
-import { Location, Permissions } from 'expo';
+import { AppContext } from '../context/AppContext';
+import ListItem from '../components/ListItem';
 
 export default class ListScreen extends React.Component {
 
@@ -28,30 +27,6 @@ export default class ListScreen extends React.Component {
     return d;
   }
 
-  _getLocationAsync = async () => {
-
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
-    }
-
-    let region = await Location.getCurrentPositionAsync({});
-    // let sagrada = (await Location.geocodeAsync('Carrer de Mallorca, 401, 08013 Barcelona'))[0];
-    // use this if need lat & long coords of location
-
-    let userLocationDetails = (await Location.reverseGeocodeAsync(region.coords))[0]; // if not with bracket it will be undefined
-
-    this.setState({
-      region,
-      userLocationDetails,
-    });
-  };
-
-  componentDidMount () {
-    this._getLocationAsync();
-  }
 
   static navigationOptions = ({ navigation }) => ({
     headerRight:
@@ -59,13 +34,17 @@ export default class ListScreen extends React.Component {
   });
 
   render () {
-    if (!this.state.region) {
-      return (<View />) // if not loaded empty screen
-    }
+    // if (!this.state.region) {
+    //   return (<View />) // if not loaded empty screen
+    // }
     return (
-      <ScrollView style={styles.container}>
-        {Places.map(place => <LocationInfoPage navigate={this.props.navigation} key={place.name} place={place} distance={this.distance(this.state.region.coords.latitude, this.state.region.coords.longitude, place.latitude, place.longitude)} />)}
-      </ScrollView>
+      <AppContext.Consumer>
+        {(value) => (
+          <ScrollView style={styles.container}>
+            {value.places.map(place => <ListItem navigate={this.props.navigation} key={place.name} place={place} />)}
+          </ScrollView>
+        )}
+      </AppContext.Consumer>
     );
   }
 }
@@ -75,3 +54,5 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 })
+
+// distance={this.distance(this.state.region.coords.latitude, this.state.region.coords.longitude, place.latitude, place.longitude)}
