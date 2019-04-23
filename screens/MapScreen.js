@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Animated, Image, Dimensions, TouchableOpacity } from "react-native";
-import { MapView, Location, Permissions } from 'expo';
+import { MapView } from 'expo';
 import Places from '../PlacesDBSimulator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MapStyle from '../mapStyle/MapStyle';
+import { AppContext } from '../context/AppContext';
 
 const userMarker = require('../assets/markers/maps-and-flags.png')
 const { width, height } = Dimensions.get("window");
@@ -11,8 +12,6 @@ const cardHeight = height / 5;
 const cardWidth = 270;
 
 export default class screens extends React.Component {
-
-  state = { region: null };
 
   marker = <Ionicons style={{ paddingRight: 25 }} name='ios-list-box' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
 
@@ -34,33 +33,12 @@ export default class screens extends React.Component {
   });
   // function is getting an object of 'things', which we're destructuring to get the navigation
 
-  _getLocationAsync = async () => {
-
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
-    }
-
-    let region = await Location.getCurrentPositionAsync({});
-    // let sagrada = (await Location.geocodeAsync('Carrer de Mallorca, 401, 08013 Barcelona'))[0];
-    // use this if need lat & long coords of location
-
-    let userLocationDetails = (await Location.reverseGeocodeAsync(region.coords))[0]; // if not with bracket it will be undefined
-
-    this.setState({
-      region,
-      userLocationDetails,
-    });
-  };
 
   componentWillMount () {
     this.index = 0;
     this.animation = new Animated.Value(0);
   }
   componentDidMount () {
-    this._getLocationAsync();
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here
     this.animation.addListener(({ value }) => {
@@ -92,10 +70,6 @@ export default class screens extends React.Component {
   }
 
   render () {
-    if (!this.state.region) {
-      return (<View />) // if not loaded empty screen
-    }
-
     const interpolations = Places.map((place, index) => {
       const inputRange = [
         (index - 1) * cardWidth,
@@ -116,77 +90,81 @@ export default class screens extends React.Component {
     });
 
     return (
-      <View style={styles.container}>
+      <AppContext.Consumer>
+        {(value) => (
+          <View style={styles.container}>
 
-        <MapView
-          provider={MapView.PROVIDER_GOOGLE}
-          ref={map => this.map = map}
-          customMapStyle={MapStyle}
-          initialRegion={{
-            latitude: this.state.region.coords.latitude,
-            longitude: this.state.region.coords.longitude,
-            latitudeDelta: 0.0922, // zoom
-            longitudeDelta: 0.0421
-          }}
-          style={styles.container}>
+            <MapView
+              provider={MapView.PROVIDER_GOOGLE}
+              ref={map => this.map = map}
+              customMapStyle={MapStyle}
+              initialRegion={{
+                latitude: value.region.coords.latitude,
+                longitude: value.region.coords.longitude,
+                latitudeDelta: 0.0922, // zoom
+                longitudeDelta: 0.0421
+              }}
+              style={styles.container}>
 
-          {Places.map((place, index) => {
-            const scaleStyle = {
-              transform: [
-                {
-                  scale: interpolations[index].scale,
-                },
-              ],
-            };
-            const opacityStyle = {
-              opacity: interpolations[index].opacity,
-            };
-            return (
-              <MapView.Marker
-                key={index}
-                coordinate={place}
-                onPress={() => this.handleMarkerPress(index)} >
-                <Animated.View style={[styles.markerWrap, opacityStyle]}>
-                  <Animated.View style={[styles.ring, scaleStyle]} />
-                  <View style={styles.place} />
-                </Animated.View>
-              </MapView.Marker>
-            );
-            // in order to render custom markers on the screen, need to render them as children of MapView.Marker
-            // double check - moving circle doesn't work with G Maps provider
-            // double check - if markers can be in separate component file
-          })}
+              {Places.map((place, index) => {
+                const scaleStyle = {
+                  transform: [
+                    {
+                      scale: interpolations[index].scale,
+                    },
+                  ],
+                };
+                const opacityStyle = {
+                  opacity: interpolations[index].opacity,
+                };
+                return (
+                  <MapView.Marker
+                    key={index}
+                    coordinate={place}
+                    onPress={() => this.handleMarkerPress(index)} >
+                    <Animated.View style={[styles.markerWrap, opacityStyle]}>
+                      <Animated.View style={[styles.ring, scaleStyle]} />
+                      <View style={styles.place} />
+                    </Animated.View>
+                  </MapView.Marker>
+                );
+                // in order to render custom markers on the screen, need to render them as children of MapView.Marker
+                // double check - moving circle doesn't work with G Maps provider
+                // double check - if markers can be in separate component file
+              })}
 
-          <MapView.Marker coordinate={this.state.region.coords}
-            image={userMarker} />
+              <MapView.Marker coordinate={value.region.coords}
+                image={userMarker} />
 
-        </MapView>
+            </MapView>
 
-        <Animated.ScrollView
-          horizontal
-          ref={(c) => { this.scroll = c }}
-          scrollEventThrottle={1}
-          showsHorizontalScrollIndicator={true}
-          snapToInterval={cardWidth} // ios only property
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: this.animation, }, }, },], { useNativeDriver: true })}
-          style={styles.scrollView}
-          contentContainerStyle={styles.endPadding} // to allow to scroll pass the last item
-        >
-          {Places.map((place, index) => (
-            <TouchableOpacity onPress={() => { this.handlePlacePress(place) }} style={styles.card} key={index}>
-              <Image
-                source={place.image}
-                style={styles.cardImage}
-                resizeMode="cover"
-              />
-              <View style={styles.textContent}>
-                <Text style={styles.cardtitle}>{place.name}</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </Animated.ScrollView>
+            <Animated.ScrollView
+              horizontal
+              ref={(c) => { this.scroll = c }}
+              scrollEventThrottle={1}
+              showsHorizontalScrollIndicator={true}
+              snapToInterval={cardWidth} // ios only property
+              onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: this.animation, }, }, },], { useNativeDriver: true })}
+              style={styles.scrollView}
+              contentContainerStyle={styles.endPadding} // to allow to scroll pass the last item
+            >
+              {Places.map((place, index) => (
+                <TouchableOpacity onPress={() => { this.handlePlacePress(place) }} style={styles.card} key={index}>
+                  <Image
+                    source={place.image}
+                    style={styles.cardImage}
+                    resizeMode="cover"
+                  />
+                  <View style={styles.textContent}>
+                    <Text style={styles.cardtitle}>{place.name}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </Animated.ScrollView>
 
-      </View>
+          </View>
+        )}
+      </AppContext.Consumer>
     );
   }
 }

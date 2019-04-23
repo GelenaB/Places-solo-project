@@ -1,31 +1,27 @@
 import React from 'react';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import HomeScreen from './screens/HomeScreen';
-import PlaceScreen from './screens/PlaceScreen';
-import ListScreen from './screens/ListScreen';
-import MapScreen from './screens/MapScreen';
-import firebaseTest from './firebase/FirebaseConfig';
+import { firebaseDatabase } from './firebase/FirebaseConfig';
+import { firebaseConfig } from './firebase/FirebaseConfig';
+import AppNavigator from './navigator/AppNavigator.js';
+import * as firebase from 'firebase';
+import { AppProvider } from './context/AppContext';
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Place: PlaceScreen,
-    List: ListScreen,
-    Map: MapScreen,
-    Fire: firebaseTest,
-  },
-  {
-    initialRouteName: 'List',
-    defaultNavigationOptions: {
-      headerTintColor: 'rgba(130,4,150, 0.9)',
-      headerStyle: {
-        backgroundColor: '#fff',
-      }
-    }
+export default class App extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {}
+
+    // Initialise Firebase
+    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig.FirebaseConfig); }
   }
-)
 
-const App = createAppContainer(AppNavigator);
+  render () {
+    return (
+      <AppProvider>
+        <AppNavigator />
+      </AppProvider>
+    )
+  }
+}
 
-export default App;
+
 
