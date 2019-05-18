@@ -1,6 +1,6 @@
-# **Explore Barcelona** Mobile Application
+# **Explore Barcelona**
 
-<img src="./client/public/front-page.png" width="100%" />
+<img src="./public/front-page.png" width="100%" />
 
 <hr/>
 
@@ -10,7 +10,7 @@
 
 You can switch between the map and list views to see the closest places to visit.
 
-<img src="./client/public/inside-app.png" width="100%" />
+<img src="./public/inside-app.png" width="100%" />
 
 ## Application Setup
 
@@ -21,18 +21,17 @@ git clone https://github.com/gelenab/explore-barcelona
 ```
 2. Install all dependencies
 ```
-cd client
 npm i
 ```
-3. Start the app
+3. Start the app through expo
 
 ```
-expo start
+npm start ios
 ```
 
 ## Tech Stack
 
-React Native
+React Native &
 Firebase
 
 ## Developers
