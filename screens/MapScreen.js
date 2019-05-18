@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Animated, Image, Dimensions, TouchableOpacity } from "react-native";
 import { MapView } from 'expo';
-import Places from '../PlacesDBSimulator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MapStyle from '../mapStyle/MapStyle';
 import { AppContext } from '../context/AppContext';
+import Places from '../PlacesDBSimulator';
 
 const userMarker = require('../assets/markers/maps-and-flags.png')
 const { width, height } = Dimensions.get("window");
@@ -12,6 +12,13 @@ const cardHeight = height / 5;
 const cardWidth = 270;
 
 export default class screens extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      places: [],
+    }
+  }
 
   marker = <Ionicons style={{ paddingRight: 25 }} name='ios-list-box' size={30} color='rgba(130,4,150, 0.9)' onPress={() => { navigation.navigate('List') }}></Ionicons>
 
@@ -33,18 +40,21 @@ export default class screens extends React.Component {
   });
   // function is getting an object of 'things', which we're destructuring to get the navigation
 
-
   componentWillMount () {
     this.index = 0;
     this.animation = new Animated.Value(0);
   }
   componentDidMount () {
+    firebaseDatabase.ref().on('value', (snapshot) => {
+      this.setState({ places: snapshot.val() })
+    })
+
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here
     this.animation.addListener(({ value }) => {
       let index = Math.floor(value / cardWidth + 0.3); // animate 30% away from landing on the next item
-      if (index >= Places.length) {
-        index = Places.length - 1;
+      if (index >= this.state.places.length) {
+        index = this.state.places.length - 1;
       }
       if (index <= 0) {
         index = 0;
@@ -54,7 +64,7 @@ export default class screens extends React.Component {
       this.regionTimeout = setTimeout(() => {
         if (this.index !== index) {
           this.index = index;
-          const { latitude, longitude } = Places[index];
+          const { latitude, longitude } = this.state.places[index];
           this.map.animateToRegion(
             {
               latitude,
@@ -70,7 +80,7 @@ export default class screens extends React.Component {
   }
 
   render () {
-    const interpolations = Places.map((place, index) => {
+    const interpolations = this.state.places.map((place, index) => {
       const inputRange = [
         (index - 1) * cardWidth,
         index * cardWidth,
@@ -106,7 +116,7 @@ export default class screens extends React.Component {
               }}
               style={styles.container}>
 
-              {value.places.map((place, index) => {
+              {this.state.places.map((place, index) => {
                 const scaleStyle = {
                   transform: [
                     {
@@ -148,7 +158,7 @@ export default class screens extends React.Component {
               style={styles.scrollView}
               contentContainerStyle={styles.endPadding} // to allow to scroll pass the last item
             >
-              {Places.map((place, index) => (
+              {this.state.places.map((place, index) => (
                 <TouchableOpacity onPress={() => { this.handlePlacePress(place) }} style={styles.card} key={index}>
                   <Image
                     source={place.image}

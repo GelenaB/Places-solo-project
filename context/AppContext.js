@@ -43,24 +43,34 @@ export class AppProvider extends React.Component {
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = R * c;
-    if (d > 1) return Math.round(d);
-    else if (d <= 1) return Math.round(d * 1000);
+    if (d > 1) return Math.round(d) + ' km';
+    else if (d <= 1) return Math.round(d * 1000) + ' m';
     return d;
   }
 
+  // ocassionally something in this code is breaking the app because region.coords is undefined
+
   componentDidMount () {
-    firebaseDatabase.ref().on('value', (snapshot) => {
-      const data = (snapshot.val());
-      data.map(place => {
-        let distance = this.distanceCalculator(this.state.region.coords.latitude, this.state.region.coords.longitude, place.latitude, place.longitude);
-        place.distanceAway = distance;
-      });
-      this.setState({ places: data });
-      console.log(this.state.places)
-    });
-
     this._getLocationAsync();
+    firebaseDatabase.ref().on('value', (snapshot) => {
+      let data = (snapshot.val());
 
+      if (data.length) {
+
+        data.map(place => {
+          let distance = this.distanceCalculator(this.state.region.coords.latitude, this.state.region.coords.longitude, place.latitude, place.longitude);
+          let splitDistance = distance.split(' ');
+          place.distanceNumber = splitDistance[0];
+          place.distanceMeasure = splitDistance[1];
+        })
+        data.sort((a, b) => {
+
+          return a.distanceNumber - b.distanceNumber
+
+        });
+        this.setState({ places: [...data] });
+      }
+    });
   }
 
   render () {
