@@ -1,6 +1,6 @@
 # **Explore Barcelona**
 
-<img src="./public/front-page.png" width="100%" />
+<img src="./public/front-page.png" width="80%" />
 
 <hr/>
 
@@ -10,7 +10,7 @@
 
 You can switch between the map and list views to see the closest places to visit.
 
-<img src="./public/inside-app.png" width="100%" />
+<img src="./public/inside-app.png" width="80%" />
 
 ## Application Setup
 
